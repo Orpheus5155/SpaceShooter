@@ -17,22 +17,15 @@ public class StatusText : MonoBehaviour
             textComponent = GetComponent<Text>();
         }
         
-        if (textComponent != null)
-        {
-            originalColor = textComponent.color;
-            Debug.Log($"StatusText Awake: Text component found, color: {originalColor}");
-        }
-        else
-        {
-            Debug.LogError("StatusText Awake: Text component is NULL! Please assign it in the prefab.");
-        }
+
+        originalColor = textComponent.color;
+
     }
 
     public void Initialize(string message, float duration = 2f)
     {
         if (textComponent == null)
         {
-            Debug.LogError("StatusText Initialize: Text component is null! Cannot display message.");
             Destroy(gameObject);
             return;
         }
@@ -42,8 +35,6 @@ public class StatusText : MonoBehaviour
         displayDuration = duration;
         timer = 0f;
         isInitialized = true;
-        
-        Debug.Log($"StatusText initialized with message: '{message}', duration: {duration}s, color: {originalColor}");
     }
 
     private void Update()
@@ -68,7 +59,6 @@ public class StatusText : MonoBehaviour
         // Destroy after full duration
         if (timer >= displayDuration)
         {
-            Debug.Log($"StatusText timer reached {timer}s, destroying...");
             Destroy(gameObject);
         }
     }

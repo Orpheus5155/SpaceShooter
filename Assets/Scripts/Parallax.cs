@@ -20,10 +20,6 @@ public class Parallax : MonoBehaviour
         mat = GetComponent<Renderer>().material;
         gameManager = FindFirstObjectByType<GameManager>();
         
-        if (gameManager == null)
-        {
-            Debug.LogWarning("GameManager not found! Parallax will use base speed only.");
-        }
     }
 
     // Update is called once per frame

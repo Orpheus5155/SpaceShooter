@@ -45,7 +45,6 @@ public class ScoreManager : MonoBehaviour
     {
         int multipliedPoints = Mathf.RoundToInt(points * multiplier);
         score += multipliedPoints;
-        Debug.Log($"AddScore called: {points} x {multiplier:F2} = {multipliedPoints} points. Total score: {score}");
         UpdateScoreDisplay();
         
         // Spawn score popup
@@ -53,40 +52,20 @@ public class ScoreManager : MonoBehaviour
     }
     
     private void ShowScorePopup(int score, Vector3 worldPosition)
-    {
-        Debug.Log($"ShowScorePopup called with score: {score} at position: {worldPosition}");
-        
-        if (scorePopupPrefab == null)
-        {
-            Debug.LogError("ScorePopup prefab is not assigned in ScoreManager! Please assign it in the Inspector.");
-            return;
-        }
-        
-        Debug.Log($"Instantiating popup prefab as child of {gameObject.name}");
+    {   
         GameObject popup = Instantiate(scorePopupPrefab, transform);
         popup.name = "ScorePopup_" + score;
         
-        Debug.Log($"Popup created: {popup.name}, active: {popup.activeSelf}");
-        
         ScorePopup popupScript = popup.GetComponent<ScorePopup>();
-        if (popupScript != null)
-        {
-            Debug.Log("ScorePopup script found, calling Initialize");
-            popupScript.Initialize(score, worldPosition);
-        }
-        else
-        {
-            Debug.LogError("ScorePopup script not found on prefab! Make sure the prefab has the ScorePopup script component.");
-        }
+        popupScript.Initialize(score, worldPosition);
     }
     
     public void SetMultiplier(float newMultiplier)
     {
         multiplier = newMultiplier;
-        Debug.Log($"Multiplier set to: {multiplier:F2}X");
         UpdateMultiplierDisplay();
         
-        // Show status text for multiplier increase
+        // Hiển thị status tăng multiplier
         ShowStatusText($"Multiplier increased to {multiplier:F1}X!");
     }
     
@@ -108,55 +87,21 @@ public class ScoreManager : MonoBehaviour
     
     private void UpdateScoreDisplay()
     {
-        if (scoreText != null)
-        {
-            scoreText.text = score.ToString("D8");
-        }
-        else
-        {
-            Debug.LogError("ScoreText is null! Please assign the Score Text UI element in the Inspector.");
-        }
+        scoreText.text = score.ToString("D8");
     }
     
     private void UpdateMultiplierDisplay()
     {
-        if (multiplierText != null)
-        {
-            string displayText = multiplier.ToString("F1") + "X";
-            multiplierText.text = displayText;
-            Debug.Log($"Multiplier UI updated to: {displayText}");
-        }
-        else
-        {
-            Debug.LogWarning("MultiplierText is null! Please assign the Multiplier Text UI element in the Inspector.");
-        }
+         string displayText = multiplier.ToString("F1") + "X";
+        multiplierText.text = displayText;
     }
     
     private void ShowStatusText(string message, float duration = 2f)
     {
-        Debug.Log($"ShowStatusText called with message: {message}");
-        
-        if (statusTextPrefab == null)
-        {
-            Debug.LogError("StatusText prefab is not assigned in ScoreManager! Please assign it in the Inspector.");
-            return;
-        }
-        
-        Debug.Log($"Instantiating StatusText prefab as child of {gameObject.name}");
         GameObject statusTextObj = Instantiate(statusTextPrefab, transform);
         statusTextObj.name = "StatusText_" + message.Substring(0, Mathf.Min(10, message.Length));
         
-        Debug.Log($"StatusText created: {statusTextObj.name}, active: {statusTextObj.activeSelf}");
-        
         StatusText statusTextScript = statusTextObj.GetComponent<StatusText>();
-        if (statusTextScript != null)
-        {
-            Debug.Log("StatusText script found, calling Initialize");
-            statusTextScript.Initialize(message, duration);
-        }
-        else
-        {
-            Debug.LogError("StatusText script not found on prefab! Make sure the prefab has the StatusText script component.");
-        }
+        statusTextScript.Initialize(message, duration);
     }
 }

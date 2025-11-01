@@ -23,21 +23,8 @@ public class ScorePopup : MonoBehaviour
     {
         this.worldPosition = worldPosition;
         
-        Debug.Log($"ScorePopup Initialize called: score={score}, worldPos={worldPosition}");
-        Debug.Log($"ScoreText component: {(scoreText != null ? "FOUND" : "NULL")}");
-        Debug.Log($"Main Camera: {(mainCamera != null ? "FOUND" : "NULL")}");
-        Debug.Log($"RectTransform: {(rectTransform != null ? "FOUND" : "NULL")}");
-        
-        // Set the score text
-        if (scoreText == null)
-        {
-            Debug.LogError("ScoreText is null in ScorePopup! Did you assign it in the prefab?");
-            return;
-        }
-        
         scoreText.text = "+" + score.ToString();
         originalColor = scoreText.color;
-        Debug.Log($"ScorePopup initialized successfully: text='{scoreText.text}', color={originalColor}");
     }
     
     private void Update()

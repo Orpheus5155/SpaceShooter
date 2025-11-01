@@ -35,7 +35,6 @@ public class StarCounter : MonoBehaviour
     public void AddStars(int count)
     {
         starsCollected += count;
-        Debug.Log($"Stars collected: +{count}. Total stars: {starsCollected}");
         UpdateStarsDisplay();
     }
     
@@ -52,13 +51,6 @@ public class StarCounter : MonoBehaviour
     
     private void UpdateStarsDisplay()
     {
-        if (starsText != null)
-        {
-            starsText.text = starsCollected.ToString("D3");
-        }
-        else
-        {
-            Debug.LogWarning("Stars Text is null! Please assign the Stars Text UI element in the Inspector.");
-        }
+        starsText.text = starsCollected.ToString("D3");
     }
 }

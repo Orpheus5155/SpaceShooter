@@ -201,7 +201,6 @@ public class GameManager : MonoBehaviour
         {
             difficulty += 0.02f;
             difficulty = Mathf.Min(difficulty, 1f); // Cap at 1.0
-            Debug.Log($"Difficulty increased to: {difficulty:F2}");
         }
         
         // Increase speed and spawn rate every 2 waves
@@ -210,13 +209,11 @@ public class GameManager : MonoBehaviour
             if (currentEnemySpeed < 15f)
             {
                 currentEnemySpeed += speedIncreasePer2Wave;
-                Debug.Log($"Enemy speed increased to: {currentEnemySpeed}");
             }
             
             if (spawnRate > 0.5f)
             {
                 spawnRate -= 0.1f;
-                Debug.Log($"Spawn rate decreased to: {spawnRate}s");
             }
         }
         
@@ -233,8 +230,7 @@ public class GameManager : MonoBehaviour
         {
             currentEnemySpeed = baseEnemySpeed;
         }
-        
-        Debug.Log($"Starting Wave {wave} - Enemies: {enemiesLeft} - Speed: {currentEnemySpeed}");
+
         Initialize();
     }
     

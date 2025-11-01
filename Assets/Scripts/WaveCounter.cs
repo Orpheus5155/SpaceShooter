@@ -35,11 +35,7 @@ public class WaveCounter : MonoBehaviour
         {
             int displayWave = waveNumber + 1;
             waveText.text = $"WAVE - {displayWave}";
-            Debug.Log($"Wave counter updated to: WAVE - {displayWave}");
         }
-        else
-        {
-            Debug.LogError("WaveText is null! Please assign the Wave Text UI element in the Inspector.");
-        }
+
     }
 }
