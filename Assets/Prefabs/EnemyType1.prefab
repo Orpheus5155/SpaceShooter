@@ -240,3 +240,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37b7bc09a5fa0b40ad67b0e99a56123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  scoreValue: 125
+  maxHealth: 2

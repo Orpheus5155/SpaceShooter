@@ -5,19 +5,40 @@ public class Parallax : MonoBehaviour
     Material mat;
     float distance;
 
-    [Range(0f, 0.5f)]
-    public float speed = 0.2f;
+    [Range(0f, 1.0f)]
+    public float baseSpeed = 0.2f;
+    
+    [Tooltip("How much the difficulty affects speed (0 = no effect, 1 = full effect)")]
+    [Range(0f, 2f)]
+    public float difficultyMultiplier = 0.5f;
+    
+    private GameManager gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mat = GetComponent<Renderer>().material;    
+        mat = GetComponent<Renderer>().material;
+        gameManager = FindFirstObjectByType<GameManager>();
+        
+        if (gameManager == null)
+        {
+            Debug.LogWarning("GameManager not found! Parallax will use base speed only.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance += Time.deltaTime * speed;
+        float currentSpeed = baseSpeed;
+        
+        // Adjust speed based on difficulty if GameManager exists
+        if (gameManager != null)
+        {
+            // Difficulty ranges from 0.2 to 1.0, we scale it to affect speed
+            currentSpeed = baseSpeed * (1f + gameManager.difficulty * difficultyMultiplier);
+        }
+        
+        distance += Time.deltaTime * currentSpeed;
         mat.SetTextureOffset("_MainTex", Vector2.right * distance);
     }
 }

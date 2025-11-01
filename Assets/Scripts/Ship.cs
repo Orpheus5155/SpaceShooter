@@ -121,6 +121,14 @@ public class Ship : MonoBehaviour
             }
         }
 
+        // Check for collectible items (stars)
+        Collectible collectible = collision.GetComponent<Collectible>();
+        if (collectible != null)
+        {
+            // Collectible will handle score and destroy itself
+            return;
+        }
+
         Destructible destructible = collision.GetComponent<Destructible>();
         if (destructible != null)
         {
