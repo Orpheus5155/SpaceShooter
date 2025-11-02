@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     
     [Header("Status Text")]
     [SerializeField] private GameObject statusTextPrefab;
+    [SerializeField] private GameObject lowHealthPrefab;
     
     private int score = 0;
     private float multiplier = 1.0f;
@@ -96,12 +97,31 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text = displayText;
     }
     
-    private void ShowStatusText(string message, float duration = 2f)
+    public void ShowStatusText(string message, float duration = 2f, bool permanent = false, bool blink = false)
     {
         GameObject statusTextObj = Instantiate(statusTextPrefab, transform);
         statusTextObj.name = "StatusText_" + message.Substring(0, Mathf.Min(10, message.Length));
         
         StatusText statusTextScript = statusTextObj.GetComponent<StatusText>();
-        statusTextScript.Initialize(message, duration);
+        statusTextScript.Initialize(message, duration, permanent, blink);
+    }
+    
+    public void ShowLowHealthWarning()
+    {
+        if (lowHealthPrefab == null)
+        {
+            Debug.LogError("LowHealth prefab is not assigned in ScoreManager!");
+            return;
+        }
+        
+        GameObject lowHealthObj = Instantiate(lowHealthPrefab, transform);
+        lowHealthObj.name = "LowHealth_Warning";
+        
+        // Get StatusText component and initialize with permanent blinking
+        StatusText statusTextScript = lowHealthObj.GetComponent<StatusText>();
+        if (statusTextScript != null)
+        {
+            statusTextScript.Initialize("LOW HEALTH!", 0f, permanent: true, blink: true);
+        }
     }
 }

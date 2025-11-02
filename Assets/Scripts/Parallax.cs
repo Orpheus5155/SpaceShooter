@@ -30,8 +30,9 @@ public class Parallax : MonoBehaviour
         // Adjust speed based on difficulty if GameManager exists
         if (gameManager != null)
         {
-            // Difficulty ranges from 0.2 to 1.0, we scale it to affect speed
-            currentSpeed = baseSpeed * (1f + gameManager.difficulty * difficultyMultiplier);
+            // Add difficulty-based speed increase (difficultyMultiplier controls how much difficulty affects speed)
+            float speedIncrease = gameManager.difficulty * difficultyMultiplier;
+            currentSpeed = baseSpeed + speedIncrease;
         }
         
         distance += Time.deltaTime * currentSpeed;

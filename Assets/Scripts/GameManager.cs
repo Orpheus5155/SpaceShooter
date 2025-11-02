@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public float baseEnemySpeed = 5f;
     public float speedIncreasePer2Wave = 0.5f;
     
+    [Header("Multiplier Scaling")]
+    [Tooltip("Multiplier increase per wave (e.g., 0.1 = +0.1X per wave)")]
+    public float multiplierIncreasePerWave = 0.1f;
+    
     private int enemiesLeft;
     private bool waveComplete;
     private float currentEnemySpeed;
@@ -189,10 +193,10 @@ public class GameManager : MonoBehaviour
         // Update wave counter
         UpdateWaveCounter();
         
-        // Increase score multiplier by 0.10 each wave
+        // Increase score multiplier each wave
         if (ScoreManager.Instance != null)
         {
-            float newMultiplier = 1.0f + (wave * 0.1f);
+            float newMultiplier = 1.0f + (wave * multiplierIncreasePerWave);
             ScoreManager.Instance.SetMultiplier(newMultiplier);
         }
         

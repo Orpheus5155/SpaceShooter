@@ -8,6 +8,10 @@ public class StatusText : MonoBehaviour
     private float timer = 0f;
     private Color originalColor;
     private bool isInitialized = false;
+    private bool isPermanent = false;
+    private bool shouldBlink = false;
+    private float blinkTimer = 0f;
+    private float blinkInterval = 0.5f;
 
     private void Awake()
     {
@@ -22,7 +26,7 @@ public class StatusText : MonoBehaviour
 
     }
 
-    public void Initialize(string message, float duration = 2f)
+    public void Initialize(string message, float duration = 2f, bool permanent = false, bool blink = false)
     {
         if (textComponent == null)
         {
@@ -34,6 +38,8 @@ public class StatusText : MonoBehaviour
         textComponent.color = originalColor;
         displayDuration = duration;
         timer = 0f;
+        isPermanent = permanent;
+        shouldBlink = blink;
         isInitialized = true;
     }
 
@@ -41,6 +47,33 @@ public class StatusText : MonoBehaviour
     {
         // Don't update if not properly initialized
         if (!isInitialized || textComponent == null)
+        {
+            return;
+        }
+        
+        // Handle blinking effect
+        if (shouldBlink)
+        {
+            blinkTimer += Time.deltaTime;
+            
+            if (blinkTimer >= blinkInterval)
+            {
+                blinkTimer = 0f;
+                
+                // Toggle between red and white
+                if (textComponent.color == Color.red)
+                {
+                    textComponent.color = Color.white;
+                }
+                else
+                {
+                    textComponent.color = Color.red;
+                }
+            }
+        }
+        
+        // If permanent, don't fade or destroy
+        if (isPermanent)
         {
             return;
         }
