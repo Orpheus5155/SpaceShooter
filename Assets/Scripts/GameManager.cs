@@ -143,12 +143,16 @@ public class GameManager : MonoBehaviour
         Vector3 basePos = enemySpawner.transform.position;
         float rand = Random.value;
 
-        if (rand < 0.33f)
-            return basePos;
-        else if (rand < 0.66f)
-            return basePos + new Vector3(0, 2.5f, 0);
+        if (rand < 0.2f)
+            return basePos + new Vector3(0, 3f, 0); // Top lane (20%)
+        else if (rand < 0.4f)
+            return basePos + new Vector3(0, 1.5f, 0); // Top middle (20%)
+        else if (rand < 0.6f)
+            return basePos; // Middle (20%)
+        else if (rand < 0.8f)
+            return basePos + new Vector3(0, -1.5f, 0); // Bottom middle (20%)
         else
-            return basePos + new Vector3(0, -2.5f, 0);
+            return basePos + new Vector3(0, -3f, 0); // Bottom (20%)
     }
     
     private GameObject PickStar()

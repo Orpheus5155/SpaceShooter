@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37b7bc09a5fa0b40ad67b0e99a56123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  bulletImpact: {fileID: 6323583101308126069, guid: 81e7dff71420d9e49bfd665a27db27a8, type: 3}
   scoreValue: 100
   maxHealth: 5
 --- !u!1 &4383847322112804955

@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: ab50b1015cb8b8e41ad9449c4025d35e
+guid: 47179b7508636ef49ae57e005834eb81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4534660408733384426
-    second: StarCollect_0
+      213: 6991460007132141525
+    second: BulletImpact_0
+  - first:
+      213: -6705902198673226581
+    second: BulletImpact_1
+  - first:
+      213: -1970855806549849088
+    second: BulletImpact_2
+  - first:
+      213: 5267929218215876424
+    second: BulletImpact_3
+  - first:
+      213: 9201913654221948388
+    second: BulletImpact_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,89 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StarCollect_0
+      name: BulletImpact_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 2
+        y: 3
+        width: 13
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aeeb497bd995eee30800000000000000
-      internalID: 4534660408733384426
+      spriteID: 5d7167a85d7a60160800000000000000
+      internalID: 6991460007132141525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarCollect_1
+      name: BulletImpact_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 23
         y: 0
-        width: 16
+        width: 18
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 83db558128785e243b4cbb25d3a9c083
-      internalID: -1041054704
+      spriteID: ba4429dca79dfe2a0800000000000000
+      internalID: -6705902198673226581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarCollect_2
+      name: BulletImpact_2
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 16
-        height: 16
+        x: 47
+        y: 3
+        width: 10
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 23e73e22e5df53b478e9554ca1ed08bf
-      internalID: -506439171
+      spriteID: 00c8413061d16a4e0800000000000000
+      internalID: -1970855806549849088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StarCollect_3
+      name: BulletImpact_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 0
-        width: 16
-        height: 16
+        x: 63
+        y: 3
+        width: 10
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2ca7cd5a903bead4d9e1342bb8421235
-      internalID: 807033129
+      spriteID: 84798a996b17b1940800000000000000
+      internalID: 5267929218215876424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletImpact_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 3
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e547b5f6b3c3bf70800000000000000
+      internalID: 9201913654221948388
       vertices: []
       indices: 
       edges: []
@@ -204,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d13dfae97096aeb44af625eb76cd1a0f
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -212,14 +246,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":4.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      StarCollect_0: 4534660408733384426
-      StarCollect_1: -1041054704
-      StarCollect_2: -506439171
-      StarCollect_3: 807033129
+      BulletImpact_0: 6991460007132141525
+      BulletImpact_1: -6705902198673226581
+      BulletImpact_2: -1970855806549849088
+      BulletImpact_3: 5267929218215876424
+      BulletImpact_4: 9201913654221948388
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

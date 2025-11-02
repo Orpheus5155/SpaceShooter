@@ -16,6 +16,13 @@ public class Ship : MonoBehaviour
     bool speedUp;
     bool shoot;
 
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +51,7 @@ public class Ship : MonoBehaviour
             foreach(Gun gun in guns)
             {
                 gun.Shoot();
+                audioManager.PlaySFX(audioManager.gunshot);
             }
         }
     }
@@ -126,17 +134,13 @@ public class Ship : MonoBehaviour
         Bullet bullet = collision.GetComponent<Bullet>();
         if (bullet != null)
         {
-            Debug.Log($"Collision is a Bullet - isEnemy: {bullet.isEnemy}");
             if (bullet.isEnemy)
             {
                 // Enemy bullet deals 2 damage
                 if (HealthManager.Instance != null)
                 {
                     HealthManager.Instance.TakeDamage(2);
-                }
-                else
-                {
-                    Debug.LogError("HealthManager.Instance is NULL!");
+                    audioManager.PlaySFX(audioManager.enemyDestroy);
                 }
                 Destroy(bullet.gameObject);
                 return;
@@ -147,31 +151,19 @@ public class Ship : MonoBehaviour
         Destructible destructible = collision.GetComponent<Destructible>();
         if (destructible != null)
         {
-            Debug.Log($"Collision is a Destructible: {destructible.gameObject.name}");
-            
             // Check if this is an asteroid by name
             string objName = destructible.gameObject.name.ToLower();
             bool isAsteroid = objName.Contains("asteroid");
-            Debug.Log($"Is asteroid: {isAsteroid}");
-            
+        
             int damage = GetCollisionDamage(destructible.gameObject);
-            
-            Debug.Log($"Calculated damage: {damage}");
             
             if (HealthManager.Instance != null)
             {
+                audioManager.PlaySFX(audioManager.enemyDestroy);
                 HealthManager.Instance.TakeDamage(damage);
             }
-            else
-            {
-                Debug.LogError("HealthManager.Instance is NULL!");
-            }
-            
+        
             Destroy(destructible.gameObject);
-        }
-        else
-        {
-            Debug.LogWarning($"Collision object '{collision.gameObject.name}' has no Destructible component!");
         }
     }
     
@@ -179,38 +171,27 @@ public class Ship : MonoBehaviour
     {
         // Determine damage based on object name
         string objName = obj.name.ToLower();
-        
-        Debug.Log($"GetCollisionDamage called for: '{obj.name}' (lowercase: '{objName}')");
-        
         // Check AsteroidSmall BEFORE generic "asteroid" to avoid false matches
         if (objName.Contains("asteroidsmall"))
         {
-            Debug.Log("Identified as AsteroidSmall - 3 damage");
             return 3; // AsteroidSmall deals 3 damage
         }
         else if (objName.Contains("asteroidnormal"))
         {
-            Debug.Log("Identified as AsteroidNormal - 5 damage");
             return 5; // AsteroidNormal deals 5 damage
         }
         else if (objName.Contains("asteroid"))
         {
-            Debug.Log("Identified as Asteroid (large) - 7 damage");
             return 7; // Asteroid (large) deals 7 damage
         }
         else if (objName.Contains("enemytype1") || objName.Contains("smallenemy"))
         {
-            Debug.Log("Identified as EnemyType1 - 4 damage");
             return 4; // EnemyType1 deals 4 damage
         }
         else if (objName.Contains("enemytype2") || objName.Contains("bigenemy"))
         {
-            Debug.Log("Identified as EnemyType2 - 6 damage");
             return 6; // EnemyType2 deals 6 damage
         }
-        
-        // Default damage if type not recognized
-        Debug.LogWarning($"Enemy/Asteroid type not recognized: '{objName}' - using default 3 damage");
         return 3;
     }
 }
