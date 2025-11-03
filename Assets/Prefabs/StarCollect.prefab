@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5810035729043012587}
   - component: {fileID: 439241559526056827}
   - component: {fileID: 6736527276663389050}
-  - component: {fileID: 1829770842599630425}
+  - component: {fileID: 5811649764109780180}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -146,7 +146,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1829770842599630425
+--- !u!114 &5811649764109780180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,3 +158,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61838f9dbecede45a3317d1c337d242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosionAnimation
+  destroyAfter: 0.5

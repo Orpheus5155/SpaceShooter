@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     public float starSpawnProbability = 0.6f;
     
     [Header("Enemy Speed Scaling")]
-    public float baseEnemySpeed = 5f;
-    public float speedIncreasePer2Wave = 0.5f;
+    [Tooltip("Speed multiplier that increases each wave")]
+    public float speedMultiplierPer2Wave = 0.1f;
     
     [Header("Multiplier Scaling")]
     [Tooltip("Multiplier increase per wave (e.g., 0.1 = +0.1X per wave)")]
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     
     private int enemiesLeft;
     private bool waveComplete;
-    private float currentEnemySpeed;
+    private float currentSpeedMultiplier = 1.0f;
 
     private void Start()
     {
@@ -82,11 +82,11 @@ public class GameManager : MonoBehaviour
         
         GameObject spawnedEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
         
-        // Apply speed boost based on current wave
+        // Apply speed multiplier based on current wave
         MoveRightLeft movement = spawnedEnemy.GetComponent<MoveRightLeft>();
         if (movement != null)
         {
-            movement.moveSpeed = currentEnemySpeed;
+            movement.moveSpeed *= currentSpeedMultiplier;
         }
         
         // Randomly enable/disable SineMovement (50% chance)
@@ -110,11 +110,11 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPos = GetRandomSpawnPosition();
         GameObject spawnedAsteroid = Instantiate(asteroidPrefab, spawnPos, Quaternion.identity);
         
-        // Apply speed boost based on current wave
+        // Apply speed multiplier based on current wave
         MoveRightLeft movement = spawnedAsteroid.GetComponent<MoveRightLeft>();
         if (movement != null)
         {
-            movement.moveSpeed = currentEnemySpeed;
+            movement.moveSpeed *= currentSpeedMultiplier;
         }
     }
     
@@ -130,11 +130,11 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPos = GetRandomSpawnPosition();
         GameObject spawnedStar = Instantiate(starPrefab, spawnPos, Quaternion.identity);
         
-        // Apply speed boost based on current wave
+        // Apply speed multiplier based on current wave
         MoveRightLeft movement = spawnedStar.GetComponent<MoveRightLeft>();
         if (movement != null)
         {
-            movement.moveSpeed = currentEnemySpeed;
+            movement.moveSpeed *= currentSpeedMultiplier;
         }
     }
 
@@ -211,13 +211,10 @@ public class GameManager : MonoBehaviour
             difficulty = Mathf.Min(difficulty, 1f); // Cap at 1.0
         }
         
-        // Increase speed and spawn rate every 2 waves
+        // Increase speed multiplier and spawn rate every 2 waves
         if (wave % 2 == 0)
         {
-            if (currentEnemySpeed < 15f)
-            {
-                currentEnemySpeed += speedIncreasePer2Wave;
-            }
+            currentSpeedMultiplier += speedMultiplierPer2Wave;
             
             if (spawnRate > 0.5f)
             {
@@ -233,10 +230,10 @@ public class GameManager : MonoBehaviour
         enemiesLeft = enemiesAmount;
         waveComplete = false;
         
-        // Set initial speed on first wave
+        // Reset speed multiplier on first wave
         if (wave == 0)
         {
-            currentEnemySpeed = baseEnemySpeed;
+            currentSpeedMultiplier = 1.0f;
         }
 
         Initialize();

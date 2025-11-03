@@ -1,0 +1,1 @@
+This project is about a 2D Side Scrolling Space Shooter (Shoot-em-Up) in Unity (C#)  

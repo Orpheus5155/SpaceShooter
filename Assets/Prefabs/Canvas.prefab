@@ -264,6 +264,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae75d87af3069e40af7e5292c361d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  sfxLoop: {fileID: 0}
+  background: {fileID: 0}
+  gunshot: {fileID: 0}
+  enemyDestroy: {fileID: 0}
+  lowHealthWarning: {fileID: 0}
 --- !u!1 &5783298321947650717
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41081c5cce6202749bdf149e6c2ad22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  _sceneController: {fileID: 2060781880115959961, guid: 0437659dbd37f5f44a17befcaddb69cf, type: 3}
   maxHealth: 15
   healthBarContainer: {fileID: 3546715921460482155}
 --- !u!1 &6646877501281818870

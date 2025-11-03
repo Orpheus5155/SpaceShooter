@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372aaeb3b9116824ea46187fa2c02b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveRightLeft
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!114 &2437388173105125429
 MonoBehaviour:
   m_ObjectHideFlags: 0

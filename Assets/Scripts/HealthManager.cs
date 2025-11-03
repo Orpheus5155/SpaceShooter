@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
+
+    [SerializeField] private SceneController _sceneController;
+
     [SerializeField] private int maxHealth = 15;
     private int currentHealth;
 
@@ -118,6 +122,7 @@ public class HealthManager : MonoBehaviour
             // Optionally destroy player or disable controls
             // Destroy(player);
             player.SetActive(false);
+            _sceneController.LoadScene("GameOver");
         }
     }
     

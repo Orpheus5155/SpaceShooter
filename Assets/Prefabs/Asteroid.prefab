@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372aaeb3b9116824ea46187fa2c02b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveRightLeft
-  moveSpeed: 250
+  moveSpeed: 2
 --- !u!50 &2045209684471633884
 Rigidbody2D:
   serializedVersion: 5
