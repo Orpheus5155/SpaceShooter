@@ -108,12 +108,6 @@ public class ScoreManager : MonoBehaviour
     
     public void ShowLowHealthWarning()
     {
-        if (lowHealthPrefab == null)
-        {
-            Debug.LogError("LowHealth prefab is not assigned in ScoreManager!");
-            return;
-        }
-        
         GameObject lowHealthObj = Instantiate(lowHealthPrefab, transform);
         lowHealthObj.name = "LowHealth_Warning";
         

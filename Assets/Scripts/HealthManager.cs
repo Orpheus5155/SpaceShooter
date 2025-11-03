@@ -5,9 +5,11 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 15;
     private int currentHealth;
-    
+
     [SerializeField] private Transform healthBarContainer;
-    
+
+    AudioManager audioManager;
+
     private Transform[] healthPoints;
     private bool lowHealthWarningShown = false;
     
@@ -17,16 +19,17 @@ public class HealthManager : MonoBehaviour
     {
         get { return instance; }
     }
-    
+
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         // Singleton pattern
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        
+
         instance = this;
     }
     
@@ -89,7 +92,7 @@ public class HealthManager : MonoBehaviour
             {
                 ScoreManager.Instance.ShowLowHealthWarning();
                 lowHealthWarningShown = true;
-                Debug.Log("LOW HEALTH warning displayed (permanent, blinking)");
+                audioManager.PlaySFXLoop(audioManager.lowHealthWarning);
             }
         }
         
@@ -102,8 +105,6 @@ public class HealthManager : MonoBehaviour
     
     private void OnPlayerDeath()
     {
-        Debug.Log("Player has died!");
-        
         // Show status text
         if (ScoreManager.Instance != null)
         {
